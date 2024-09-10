@@ -23,7 +23,7 @@ function newNonPlayableCharacter(x, y) {
 
     setInterval(moveCharacter, 1)
 
-    function walkEast() {
+    function walkEast(time) {
         direction = 'east'
         element.src = `./assets/red-character/east.gif`
     }
@@ -56,4 +56,17 @@ function newNonPlayableCharacter(x, y) {
         walkSouth: walkSouth,
         stop: stop
     }
+    function sleep(time){
+        return new Promise(resolve => {
+            setTimeout(resolve, time)
+        })  
+    }
 }
+npc.walkNorth(1400)
+    .then(() => npc.walkEast(1200))
+    .then(() => npc.walkSouth(300))
+    .then(() => npc.walkEast(1500))
+    .then(() => npc.walkSouth(1500))
+    .then(() => npc.walkWest(2700))
+    .then(() => npc.walkNorth(400))
+
